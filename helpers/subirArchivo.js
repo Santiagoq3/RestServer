@@ -5,7 +5,7 @@ const subirArchivo = (files, extensionesValidas= ["png","jpg","jpeg"], carpeta =
 
     return new Promise((res,rej)=>{
 
-        const {archivo} = files;
+        const { archivo } = files;
 
         const nombreCortado = archivo.name.split(".");
         const ultimoElemento = nombreCortado.length - 1;

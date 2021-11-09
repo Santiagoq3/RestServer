@@ -1,12 +1,13 @@
-const { response, json } = require("express");
+const path = require("path");
+const fs = require("fs")
+
+const { response, request } = require("express");
+
 const subirArchivo = require("../helpers/subirArchivo");
 const Producto = require("../models/producto");
 const Usuario = require("../models/usuario");
 
-
-
-
-const cargarArchivos = async(req,res=response)=>{
+const cargarArchivos = async(req = request,res=response)=>{
 
   
     if (!req.files || Object.keys(req.files).length === 0) {
@@ -21,7 +22,6 @@ const cargarArchivos = async(req,res=response)=>{
       });
       return;
     }
-
     try {
         const path = await subirArchivo(req.files,undefined,"imgs");
         
@@ -33,20 +33,17 @@ const cargarArchivos = async(req,res=response)=>{
         res.status(400).json({
             error
         })
-        
     }
-
-
-
-   
-  
-  
-    
-
 }
 
-
 const actualizarArchivos = async(req,res=response)=>{
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+        res.status(400).json({
+            msg: "no hay archivos subidos"
+        });
+        return;
+      }
 
 
     const {id,coleccion} = req.params;
@@ -64,10 +61,8 @@ const actualizarArchivos = async(req,res=response)=>{
                     msg: "no existe el usuario"
                 })
             }
-
             break;
         case "productos":
-
 
             modelo =await Producto.findById(id)
 
@@ -78,33 +73,32 @@ const actualizarArchivos = async(req,res=response)=>{
             }
             
            
-    
         default:
            return res.status(500).json({
                msg: "se me olvido validar esto"
            })
     }
 
+    // Borrar imagenes antiguas
 
-    
+    if(modelo.img){
+        const pathImagen = path.join(__dirname, "../uploads",coleccion, modelo.img)
+
+        if(fs.existsSync(pathImagen)){
+            fs.unlinkSync(pathImagen)
+        }
+    }
+
     modelo.img = await subirArchivo(req.files,undefined,coleccion);
 
     await modelo.save()
         
-
-
-
-
-
-
     res.json({
         id,
         coleccion,
         modelo
     })
 }
-
-
 
 
 module.exports = {

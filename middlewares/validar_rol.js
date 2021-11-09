@@ -7,13 +7,11 @@ const esAdminRol = (req = request,res = response,next)=>{
 
     if(usuario.rol !== "ADMIN_ROL"){
         return res.status(401).json({
-            msg: "Rol no autorizado- no eres un admin"
+            msg: "Rol no autorizado - no eres administrador"
         })
     }
 
     next()
-
-
 }
 
 const tieneRol = (...roles)=>{

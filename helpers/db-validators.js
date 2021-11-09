@@ -26,7 +26,6 @@ const existeEmail = async(correo = "")=>{
     }
 }
 
-
 const existeUsuarioId = async(id )=>{
 
     const existeUsuario = await Usuario.findById(id)
@@ -61,7 +60,6 @@ const existeProductoId = async(id )=>{
     }
 }
 
-
 const validarColecciones = (coleccion,colecciones = [])=>{
 
     const incluida = colecciones.includes(coleccion)
@@ -70,15 +68,8 @@ const validarColecciones = (coleccion,colecciones = [])=>{
         throw new Error("la coleccion no es permitida" + colecciones)
     }
 
-
     return true
-
-
 }
-
-
-
-
 
 module.exports ={
     esRoleValido,

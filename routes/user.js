@@ -10,9 +10,7 @@ const { esAdminRol, tieneRol } = require("../middlewares/validar_rol");
 
 const { esRoleValido, existeEmail, existeUsuarioId } = require("../helpers/db-validators");
 
-
 const router = Router();
-
 
 router.get('/', userGet )
 
@@ -45,6 +43,5 @@ router.delete('/:id',[
 ], userDelete)
 
 router.patch('/', userPatch)
-
 
 module.exports = router

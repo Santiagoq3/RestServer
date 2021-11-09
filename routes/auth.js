@@ -5,7 +5,6 @@ const { validarCampos } = require("../middlewares/validar-campos");
 
 const router = Router();
 
-
 router.post('/login',[
 
     check("correo", "el correo es obligatorio").isEmail(),
@@ -15,16 +14,12 @@ router.post('/login',[
 
 ], loginPost  );
 
-
 router.post('/google',[
 
     check("id_token", "el id token de google es requerido").not().isEmpty(),
     
-
     validarCampos
 
 ], googleSignInPost  );
-
-
 
 module.exports = router;

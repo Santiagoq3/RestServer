@@ -26,7 +26,6 @@ router.post('/',[
     check("nombre", "el nombre es obligatorio").not().isEmpty(),
     check("categoria", "no es un id de mongo").isMongoId(),
     check("categoria").custom(id => existeCategoriaId(id)),
-
     validarCampos
 
 ], productosPost)

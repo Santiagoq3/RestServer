@@ -1,4 +1,3 @@
-const exp = require("constants");
 const express = require("express");
 const cors = require("cors")
 const fileUpload  = require("express-fileupload")
@@ -54,15 +53,11 @@ class ServerRest{
     routes(){
 
         this.app.use(this.usuariosRoutersPath, require('../routes/user'));
-        
         this.app.use(this.authRoutersPath, require('../routes/auth'));
         this.app.use(this.categoriasRoutersPath, require('../routes/categorias'));
         this.app.use(this.productosRoutersPath, require('../routes/productos'));
         this.app.use(this.buscarRoutersPath, require('../routes/buscar'));
         this.app.use(this.uploudsRoutersPath, require('../routes/uplouds'));
-
-        
-        
 
     }
 
@@ -72,6 +67,5 @@ class ServerRest{
     }
 
 }
-
 
 module.exports = ServerRest

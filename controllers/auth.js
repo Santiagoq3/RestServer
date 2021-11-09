@@ -43,15 +43,17 @@ const loginPost = async(req, res = response) =>{
         
         //generar jwt
         const token = await generarJWT(usuario.id)
+
         res.json({
             msg: "login ok",
             usuario,
             token
         })
+
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg: "ALgo salio mal"
+            msg: "error en el servidor"
         })
     }
 

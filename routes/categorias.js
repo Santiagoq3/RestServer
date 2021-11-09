@@ -22,7 +22,7 @@ router.get('/:id', [
   validarCampos
 ] ,obtenerCategoriaPorId);
 
-//crear categoria - privado - cualquier user con token vlaido
+//crear categoria - privado - cualquier user con token valido
 
 router.post('/',[
     validarJWT,
