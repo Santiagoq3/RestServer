@@ -6,8 +6,6 @@ const { validarCampos } = require("../middlewares/validar-campos");
 
 const router = Router();
 
-
-
 router.post("/",cargarArchivos)
 
 router.put("/:coleccion/:id", [
@@ -15,8 +13,5 @@ router.put("/:coleccion/:id", [
     check("coleccion").custom(c => validarColecciones(c, ["usuarios","productos"])),
     validarCampos
 ],actualizarArchivos)
-
-
-
 
 module.exports = router;

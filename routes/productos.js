@@ -38,7 +38,6 @@ router.put('/:id',[
 ], productosPut)
 
 
-
 router.delete('/:id',[
     validarJWT,
     esAdminRol,
